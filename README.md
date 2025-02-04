@@ -1,6 +1,6 @@
 # PokerPlanningBackend
 
-### add appsettings.json
+### Add `appsettings.json`
 ```
 {
   "Logging": {
