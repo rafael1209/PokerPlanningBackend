@@ -1,7 +1,7 @@
 # PokerPlanningBackend
 
 ### Add `appsettings.json`
-```
+```json
 {
   "Logging": {
     "LogLevel": {
