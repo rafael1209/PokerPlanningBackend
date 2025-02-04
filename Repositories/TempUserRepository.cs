@@ -20,6 +20,11 @@ namespace PokerPlanningBackend.Repositories
             return await _tempUsers.Find(user => user.Email == email).FirstOrDefaultAsync();
         }
 
+        public async Task<TempUser?> GetByUsernameAsync(string username)
+        {
+            return await _tempUsers.Find(user => user.Username == username).FirstOrDefaultAsync();
+        }
+
         public async Task CreateAsync(TempUser user)
         {
             await _tempUsers.InsertOneAsync(user);

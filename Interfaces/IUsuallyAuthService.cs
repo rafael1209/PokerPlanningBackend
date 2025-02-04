@@ -8,4 +8,6 @@ public interface IUsuallyAuthService
     Task RegisterUserAsync(string username, string email, string password, string confirmToken);
     Task<TempUser?> GetTempUserByEmail(string email);
     Task ConfirmUserEmail(TempUser tempUser);
+    Task<bool> IsUsernameFree(string username);
+    Task<bool> IsEmailFree(string email);
 }

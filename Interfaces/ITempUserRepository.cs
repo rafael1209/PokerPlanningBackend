@@ -7,6 +7,7 @@ namespace PokerPlanningBackend.Interfaces
     {
         Task<TempUser?> GetByIdAsync(ObjectId id);
         Task<TempUser?> GetByEmailAsync(string email);
+        Task<TempUser?> GetByUsernameAsync(string username);
         Task CreateAsync(TempUser user);
         Task DeleteAsync(ObjectId id);
     }

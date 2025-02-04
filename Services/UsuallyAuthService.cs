@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Identity;
 using PokerPlanningBackend.Interfaces;
 using PokerPlanningBackend.Models;
 
@@ -62,6 +61,18 @@ namespace PokerPlanningBackend.Services
             });
 
             await tempUserRepository.DeleteAsync(tempUser.Id);
+        }
+
+        public async Task<bool> IsUsernameFree(string username)
+        {
+            return (await tempUserRepository.GetByUsernameAsync(username) == null &&
+                    await userRepository.GetByUsernameAsync(username) == null);
+        }
+
+        public async Task<bool> IsEmailFree(string email)
+        {
+            return (await tempUserRepository.GetByEmailAsync(email) == null &&
+                    await userRepository.GetByEmailAsync(email) == null);
         }
 
         public bool IsValidEmail(string email)

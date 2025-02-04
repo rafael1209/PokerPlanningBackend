@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-
-namespace PokerPlanningBackend.Helpers
+﻿namespace PokerPlanningBackend.Helpers
 {
     public static class EmailConfirmation
     {

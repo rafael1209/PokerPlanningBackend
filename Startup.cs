@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using PokerPlanningBackend.Database;
 using PokerPlanningBackend.Interfaces;
 using PokerPlanningBackend.Repositories;

@@ -36,12 +36,12 @@ namespace PokerPlanningBackend.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            if (await userRepository.GetByEmailAsync(request.Email) != null || 
-                await userRepository.GetByUsernameAsync(request.Username) != null)
-                return BadRequest(new { message = "User with this email or username already exists" });
-
             if (request.Password.Length < 8)
                 return BadRequest(new { message = "Password is too weak" });
+
+            if (!await usuallyAuthService.IsEmailFree(request.Email) ||
+                !await usuallyAuthService.IsUsernameFree(request.Username)) 
+                return BadRequest(new { message = "User with this email or username already exists" });
 
             try
             {
@@ -53,11 +53,10 @@ namespace PokerPlanningBackend.Controllers
                     request.Password,
                     randomCode);
 
-
                 var confirmationLink = EmailConfirmation.GenerateConfirmationLink(request.Email, randomCode, Request);
                 await emailService.SendConfirmationEmail(request.Email, request.Username, confirmationLink);
 
-                return Ok(new { message = "" });
+                return Ok(new { message = "Confirmation email sent" });
             }
             catch (Exception e)
             {
@@ -101,23 +100,6 @@ namespace PokerPlanningBackend.Controllers
 
             return Ok(new { authToken });
         }
-
-        //[HttpPost("email/send-confirmation")]
-        //public async Task<IActionResult> SendConfirmationEmail([FromBody] EmailRequest request)
-        //{
-        //    var user = await userRepository.GetByEmailAsync(request.Email);
-
-        //    if (user == null)
-        //        return BadRequest(new { message = "User don't exist" });
-
-        //    var randomCode = EmailConfirmation.GenerateConfirmationCode();
-        //    //await userRepository.UpdateEmailConfirmationToken(user.Id, randomCode);
-
-        //    var confirmationLink = EmailConfirmation.GenerateConfirmationLink(user.Id, randomCode, Request);
-        //    await emailService.SendConfirmationEmail(user.Email, user.Username, confirmationLink);
-
-        //    return Ok(new { message = "Confirmation email sent" });
-        //}
 
         [HttpGet("email/confirm")]
         public async Task<IActionResult> ConfirmEmail([FromQuery] string email, string token)
