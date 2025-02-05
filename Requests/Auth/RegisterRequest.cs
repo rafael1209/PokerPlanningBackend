@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PokerPlanningBackend.Requests
+namespace PokerPlanningBackend.Requests.Auth
 {
     public class RegisterRequest
     {

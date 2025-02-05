@@ -1,4 +1,4 @@
-﻿namespace PokerPlanningBackend.Requests
+﻿namespace PokerPlanningBackend.Requests.Auth
 {
     public class LoginRequest
     {

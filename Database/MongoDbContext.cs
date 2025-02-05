@@ -10,6 +10,7 @@ namespace PokerPlanningBackend.Database
 
         private const string ConstUsersCollection = "users";
         private const string ConstTempUsersCollection = "temp-users";
+        private const string ConstRoomsCollection = "rooms";
 
         public MongoDbContext(IConfiguration configuration)
         {
@@ -19,6 +20,6 @@ namespace PokerPlanningBackend.Database
 
         public IMongoCollection<User> Users => _database.GetCollection<User>(ConstUsersCollection);
         public IMongoCollection<TempUser> TempUsers => _database.GetCollection<TempUser>(ConstTempUsersCollection);
-
+        public IMongoCollection<Room> Room => _database.GetCollection<Room>(ConstRoomsCollection);
     }
 }

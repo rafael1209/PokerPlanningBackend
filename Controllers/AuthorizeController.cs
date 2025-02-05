@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using PokerPlanningBackend.Helpers;
 using PokerPlanningBackend.Interfaces;
 using PokerPlanningBackend.Models;
-using PokerPlanningBackend.Requests;
+using PokerPlanningBackend.Requests.Auth;
 using EmailConfirmation = PokerPlanningBackend.Helpers.EmailConfirmation;
 
 namespace PokerPlanningBackend.Controllers
